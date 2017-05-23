@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace XlCirrus
+namespace math.net.xladdin
 {
     public static class UDFs
     {

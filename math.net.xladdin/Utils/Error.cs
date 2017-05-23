@@ -1,10 +1,11 @@
-﻿using System;
+﻿using ExcelDna.Integration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XlCirrus
+namespace math.net.xladdin
 {
     public class Error : Exception
     {
@@ -24,6 +25,17 @@ namespace XlCirrus
         {
             if (!trueOrThrow)
                 throw new Error(first, msg);
+        }
+
+        private static bool _useExcelErrors;
+
+        public static bool UseExcelErrors { get => _useExcelErrors; set => _useExcelErrors = value; }
+        public static object ExcelHandle(Exception ex)
+        {
+            if (!UseExcelErrors)
+                return ex.ToString();
+
+            return ExcelError.ExcelErrorValue;
         }
     }
 }

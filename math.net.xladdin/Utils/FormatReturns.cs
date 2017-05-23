@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Reflection;
 
-namespace XlCirrus
+namespace math.net.xladdin
 {
     public static class Format
     {

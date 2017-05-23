@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26403.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "math.net.xladdin", "math.net.xladdin.csproj", "{57F367BC-7346-4139-8BB0-7181DD51F1B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "math.net.xlgen", "math.net.xlgen\math.net.xlgen.csproj", "{7ACC65A7-6BE9-4B10-8338-28D90E4D85C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XlUDFGenerator", "..\XlUDFGenerator\XlUDFGenerator.csproj", "{93E02997-8F7A-44C6-A023-5328C7242DF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "math.net.xladdin", "math.net.xladdin\math.net.xladdin.csproj", "{57F367BC-7346-4139-8BB0-7181DD51F1B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "math.net.xlgen.test", "math.net.xlgen.test\math.net.xlgen.test.csproj", "{126C825D-55EE-47EA-8C87-AD5228FDC270}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +19,15 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7ACC65A7-6BE9-4B10-8338-28D90E4D85C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7ACC65A7-6BE9-4B10-8338-28D90E4D85C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7ACC65A7-6BE9-4B10-8338-28D90E4D85C3}.Debug|x64.ActiveCfg = Debug|x86
+		{7ACC65A7-6BE9-4B10-8338-28D90E4D85C3}.Debug|x86.ActiveCfg = Debug|x86
+		{7ACC65A7-6BE9-4B10-8338-28D90E4D85C3}.Debug|x86.Build.0 = Debug|x86
+		{7ACC65A7-6BE9-4B10-8338-28D90E4D85C3}.Release|Any CPU.ActiveCfg = Release|x86
+		{7ACC65A7-6BE9-4B10-8338-28D90E4D85C3}.Release|x64.ActiveCfg = Release|x86
+		{7ACC65A7-6BE9-4B10-8338-28D90E4D85C3}.Release|x86.ActiveCfg = Release|x86
+		{7ACC65A7-6BE9-4B10-8338-28D90E4D85C3}.Release|x86.Build.0 = Release|x86
 		{57F367BC-7346-4139-8BB0-7181DD51F1B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{57F367BC-7346-4139-8BB0-7181DD51F1B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57F367BC-7346-4139-8BB0-7181DD51F1B5}.Debug|x64.ActiveCfg = Debug|x64
@@ -29,14 +40,18 @@ Global
 		{57F367BC-7346-4139-8BB0-7181DD51F1B5}.Release|x64.Build.0 = Release|x64
 		{57F367BC-7346-4139-8BB0-7181DD51F1B5}.Release|x86.ActiveCfg = Release|Any CPU
 		{57F367BC-7346-4139-8BB0-7181DD51F1B5}.Release|x86.Build.0 = Release|Any CPU
-		{93E02997-8F7A-44C6-A023-5328C7242DF1}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{93E02997-8F7A-44C6-A023-5328C7242DF1}.Debug|x64.ActiveCfg = Debug|x86
-		{93E02997-8F7A-44C6-A023-5328C7242DF1}.Debug|x86.ActiveCfg = Debug|x86
-		{93E02997-8F7A-44C6-A023-5328C7242DF1}.Debug|x86.Build.0 = Debug|x86
-		{93E02997-8F7A-44C6-A023-5328C7242DF1}.Release|Any CPU.ActiveCfg = Release|x86
-		{93E02997-8F7A-44C6-A023-5328C7242DF1}.Release|x64.ActiveCfg = Release|x86
-		{93E02997-8F7A-44C6-A023-5328C7242DF1}.Release|x86.ActiveCfg = Release|x86
-		{93E02997-8F7A-44C6-A023-5328C7242DF1}.Release|x86.Build.0 = Release|x86
+		{126C825D-55EE-47EA-8C87-AD5228FDC270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{126C825D-55EE-47EA-8C87-AD5228FDC270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{126C825D-55EE-47EA-8C87-AD5228FDC270}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{126C825D-55EE-47EA-8C87-AD5228FDC270}.Debug|x64.Build.0 = Debug|Any CPU
+		{126C825D-55EE-47EA-8C87-AD5228FDC270}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{126C825D-55EE-47EA-8C87-AD5228FDC270}.Debug|x86.Build.0 = Debug|Any CPU
+		{126C825D-55EE-47EA-8C87-AD5228FDC270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{126C825D-55EE-47EA-8C87-AD5228FDC270}.Release|Any CPU.Build.0 = Release|Any CPU
+		{126C825D-55EE-47EA-8C87-AD5228FDC270}.Release|x64.ActiveCfg = Release|Any CPU
+		{126C825D-55EE-47EA-8C87-AD5228FDC270}.Release|x64.Build.0 = Release|Any CPU
+		{126C825D-55EE-47EA-8C87-AD5228FDC270}.Release|x86.ActiveCfg = Release|Any CPU
+		{126C825D-55EE-47EA-8C87-AD5228FDC270}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

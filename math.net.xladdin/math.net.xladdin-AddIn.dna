@@ -1,5 +1,5 @@
-<DnaLibrary Name="XlCirrus Add-In" RuntimeVersion="v4.0">
-  <ExternalLibrary Path="XlCirrus.dll" LoadFromBytes="true" Pack="true" />
+<DnaLibrary Name="math.net Add-In" RuntimeVersion="v4.0">
+  <ExternalLibrary Path="math.net.xladdin.dll" LoadFromBytes="true" Pack="true" />
   
   <!-- 
        The RuntimeVersion attribute above allows two settings:

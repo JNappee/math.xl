@@ -8,12 +8,12 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace XlCirrus
+namespace math.net.xladdin
 {
     public static class CubicSpline
     {
         [ExcelFunction(Description = "CubicSpline InterpolateAkima")]
-        public static object CubicSpline_InterpolateAkima([ExcelArgument()] double[] x, [ExcelArgument()] double[] y)
+        public static object CubicSpline_InterpolateAkima(double[] x, [ExcelArgument()] double[] y)
         {
             try
             {

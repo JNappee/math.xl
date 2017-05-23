@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace XlCirrus
+namespace math.net.xladdin
 {
     public static class OptionsParser
     {
