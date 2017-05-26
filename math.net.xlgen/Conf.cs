@@ -9,6 +9,7 @@ namespace math.net.xlgen
 {
     public static class Conf
     {
+        public static bool AllowObsolete => Convert.ToBoolean(ConfigurationManager.AppSettings.Get("AllowObsolete"));
         public static string Internal_Namespace =>  ConfigurationManager.AppSettings.Get("Internal.Namespace");
         public static string Internal_ClassName => ConfigurationManager.AppSettings.Get("Internal.ClassName");
         public static string Internal_WritePath => ConfigurationManager.AppSettings.Get("Internal.WritePath");

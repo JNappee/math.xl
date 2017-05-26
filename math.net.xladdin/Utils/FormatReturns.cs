@@ -89,6 +89,27 @@ namespace math.net.xladdin
             return Transpose(a, caller);
         }
 
+        internal static object Return(IEnumerable<Double> a, ExcelReference caller, string options = "None")
+        {
+            var destSize = DestSize(caller);
+            var res = a.Take(destSize).ToArray();
+            return Return(res, caller, options);
+        }
+
+        internal static object Return(IEnumerable<Int32> a, ExcelReference caller, string options = "None")
+        {
+            var destSize = DestSize(caller);
+            var res = a.Take(destSize).ToArray();
+            return Return(Array.ConvertAll(res, r => (double)(Int32)r), caller, options);
+        }
+
+        internal static object Return(IEnumerable<string> a, ExcelReference caller, string options = "None")
+        {
+            var destSize = DestSize(caller);
+            var res = a.Take(destSize).ToArray();
+            return Return(res, caller, options);
+        }
+
         private static object GetFiller(string fill)
         {
             switch (fill)

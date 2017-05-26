@@ -20,6 +20,7 @@
     </NuGetPackageImportStamp>
     <RestorePackages>true</RestorePackages>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..</SolutionDir>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugType>full</DebugType>
@@ -28,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <DebugType>pdbonly</DebugType>
@@ -36,6 +38,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <OutputPath>bin\Debug\</OutputPath>
@@ -69,6 +72,9 @@
     <Reference Include="Microsoft.CodeAnalysis.CSharp">
       <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.2.1.0\lib\netstandard1.3\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.Features, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.Features.2.1.0\lib\netstandard1.3\Microsoft.CodeAnalysis.CSharp.Features.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeAnalysis.CSharp.Workspaces">
       <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.Workspaces.2.1.0\lib\netstandard1.3\Microsoft.CodeAnalysis.CSharp.Workspaces.dll</HintPath>
     </Reference>
@@ -80,6 +86,9 @@
     </Reference>
     <Reference Include="Microsoft.CodeAnalysis.VisualBasic">
       <HintPath>..\packages\Microsoft.CodeAnalysis.VisualBasic.2.1.0\lib\netstandard1.3\Microsoft.CodeAnalysis.VisualBasic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.VisualBasic.Features, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.VisualBasic.Features.2.1.0\lib\netstandard1.3\Microsoft.CodeAnalysis.VisualBasic.Features.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeAnalysis.VisualBasic.Workspaces">
       <HintPath>..\packages\Microsoft.CodeAnalysis.VisualBasic.Workspaces.2.1.0\lib\netstandard1.3\Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll</HintPath>
@@ -195,11 +204,15 @@
   <ItemGroup>
     <Compile Include="Conf.cs" />
     <Compile Include="Doc.cs" />
-    <Compile Include="GenExcelExport.cs" />
-    <Compile Include="GenInternal.cs" />
+    <Compile Include="ExcelGeneration\GenExcelExport.cs" />
+    <Compile Include="ExcelGeneration\ExcelNameHelper.cs" />
+    <Compile Include="ExcelGeneration\TypeHelpers\TypeHelperWithMapping.cs" />
+    <Compile Include="ExcelGeneration\TypeHelpers\TypeHelperNoMapping.cs" />
+    <Compile Include="ExcelGeneration\TypeHelpers\TypeHelper.cs" />
+    <Compile Include="ExcelGeneration\TypeHelpers\MapperAttribute.cs" />
+    <Compile Include="InternalGeneration\GenInternal.cs" />
     <Compile Include="HelperExtensions.cs" />
-    <Compile Include="MathNetInspector.cs" />
-    <Compile Include="NameHelper.cs" />
+    <Compile Include="InternalGeneration\InternalNameHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SyntaxExtensions.cs" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -19,7 +20,7 @@ namespace math.net.xlgen
 
         public static DocFunction GetOrNull(Type t, MethodInfo m)
         {
-            var docName = NameHelper.GetDocName(t, m);
+            var docName = ExcelNameHelper.GetDocName(t, m);
             return GetOrNull(docName);
         }
 

@@ -23,18 +23,16 @@ namespace math.net.xlgen
         {
             try
             {
-                var methods = MathNetInspector.GetMathNetMethods();
-                var internalMethods = GenInternal.FilterTypes(methods);
-                var exportedMethods = GenExcelExports.FilterTypes(internalMethods);
-                
+                var methods = GetMathNetMethods();
+
                 var alternateNames = new Dictionary<MethodInfo, string>();
                 // find all methods with same name and number or args 
-                var groups = exportedMethods.ToDictionary(kv => kv.Key, 
+                var filtered = methods.ToDictionary(kv => kv.Key, 
                     kv => kv.Value.GroupBy(v => v.Name).SelectMany(
                         g => FilterGroups(g, ref alternateNames)).ToArray());
 
-                GenInternals(internalMethods, alternateNames);
-                GenExcelExport(groups, alternateNames);
+              //  GenInternals(filtered, alternateNames);
+                GenExcelExport(filtered, alternateNames);
 
             }
             catch (Exception ex)
@@ -42,6 +40,50 @@ namespace math.net.xlgen
                 Console.WriteLine(ex.ToString());
             }
         }
+
+        /// <summary>
+        /// Returns all methods in Math.Net that dont return void and arent Generic
+        /// </summary>
+        /// <returns></returns>
+        public static Dictionary<Type, MethodInfo[]> GetMathNetMethods()
+        {
+            var MNAssembly = typeof(MathNet.Numerics.Combinatorics).Assembly;
+            var types = MNAssembly.GetTypes();
+            var res = new Dictionary<Type, MethodInfo[]>();
+            foreach (var t in types.Where(type => type.IsPublic))
+            {
+                var ms = t.GetMethods();
+                ms = ms.Where(IsAcceptedMethod).ToArray();
+                if (ms.Length > 0)
+                    res[t] = ms;
+            }
+            return res;
+        }
+
+        public static bool IsAcceptedMethod(MethodInfo m)
+        {
+            return m.IsPublic
+                && !m.IsGenericMethod
+                && m.ReturnType != typeof(void)
+                && m.ReturnType != typeof(MathNet.Numerics.Complex32)
+                && m.ReturnType != typeof(Type)
+                && m.ReturnType != typeof(Int64)
+                && m.Name != "GetHashCode"
+                && m.Name != "ToString"
+                && m.Name != "Equals"
+                && m.Name != "get_HResult"
+                && m.Name != "BeginInvoke"
+                && m.Name != "EndInvoke"
+                && m.GetParameters().All(p => 
+                    p.ParameterType != typeof(MathNet.Numerics.Complex32)
+                    && p.ParameterType != typeof(Single)
+                    && p.ParameterType != typeof(Int64)
+                    && !p.ParameterType.IsByRef
+                    )
+                && (Conf.AllowObsolete || m.GetCustomAttributes().OfType<ObsoleteAttribute>().Count() == 0);
+        }
+
+
 
         static List<MethodInfo> FilterGroups(IGrouping<string, MethodInfo> groups, ref Dictionary<MethodInfo, string> alternateNames)
         {
@@ -91,7 +133,9 @@ namespace math.net.xlgen
                          kv.Value.Select(m => GenExcelExports.Generate(Conf.Internal_Namespace + "." + Conf.Internal_ClassName,  kv.Key, m, alternateNames)));
 
             var classCode = Class(Conf.ExcelExport_ClassName, methodsCode);
+            Console.WriteLine("Generated " + methodsCode.Count() + " Excel exports.");
             var namespaceCode = GenExcelExports.Namespace(Conf.ExcelExport_Namespace, classCode);
+
 
             var cw = new AdhocWorkspace();
             cw.Options.WithChangedOption(CSharpFormattingOptions.IndentBraces, true);
@@ -106,6 +150,8 @@ namespace math.net.xlgen
              kv.Value.Where(m => !m.IsGenericMethod).Select(m => GenInternal.Generate(kv.Key, m, alternateNames)));
 
             var classCode = Class(Conf.Internal_ClassName, methodsCode);
+                Console.WriteLine("Generated " + methodsCode.Count() + " Internal functions.");
+
             var namespaceCode = GenInternal.Namespace(Conf.Internal_Namespace, classCode);
 
             var cw = new AdhocWorkspace();
@@ -119,7 +165,7 @@ namespace math.net.xlgen
         {
             return SyntaxFactory.ClassDeclaration(name)
                 .WithMembers(SyntaxFactory.List(m))
-                .AddModifiers(SyntaxFactory.Token(SyntaxKind.InternalKeyword),
+                .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword),
                 SyntaxFactory.Token(SyntaxKind.StaticKeyword));
         }
 

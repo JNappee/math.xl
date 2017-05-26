@@ -27,7 +27,7 @@ namespace math.net.xladdin
                 throw new Error(first, msg);
         }
 
-        private static bool _useExcelErrors;
+        private static bool _useExcelErrors = true;
 
         public static bool UseExcelErrors { get => _useExcelErrors; set => _useExcelErrors = value; }
         public static object ExcelHandle(Exception ex)
